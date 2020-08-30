@@ -1,0 +1,170 @@
+#include <iostream>
+using namespace std;
+#include <string>
+#include <fstream>
+	static int guard=0;
+	
+	
+	
+void begin(){
+	ofstream html;
+	html.open("0001.html",ios::out);
+	html<<"<html><body";
+	html.close();
+}
+	
+void backgroundcolor(int*option_color){
+	ofstream html;
+	html.open("0001.html",ios::app);
+	html<<" style='background-color:";
+	string color;
+	cout<<"Background-color:"<<endl;
+	cout<<"1.black;\n2.white;\n3.ivory;\n4.blue;\n5.red;\n6.yellow;\n7.orange;\n8.green;"<<endl;
+
+while(1){
+	cin>>*option_color;
+	if(*option_color<=8 && *option_color>=1){
+	switch(*option_color){
+		case 1:html<<"black;";
+	break;
+		case 2:html<<"white;";
+	break;
+		case 3:html<<"ivory;";
+	break;
+		case 4:html<<"blue;";
+	break;
+		case 5:html<<"red;";
+	break;
+		case 6:html<<"yellow;";
+	break;
+		case 7:html<<"orange;";
+	break;
+		case 8:html<<"green;";
+	break;
+	default:
+	    guard++;
+		break;
+    }
+    break;
+}
+else{
+	cout<<"Sorry,but we cannot recognize it,please try again;"<<endl;
+}
+}
+	html<<"'>";
+	html.close();
+	cout<<"You successfully define the background-color!!!"<<endl;
+	cout<<endl;
+}
+
+void text(int option_color0){
+			ofstream html;
+	html.open("0001.html",ios::app);
+	cout<<"type the text you want to be displayed:";
+	string txt;
+	cin>>txt;
+	cout<<endl;
+	
+	//color of the text 
+	string color;
+	cout<<"font-color:"<<endl;
+	cout<<"1.black;\n2.white;\n3.ivory;\n4.blue;\n5.red;\n6.yellow;\n7.orange;\n8.green;"<<endl;
+	int option_color1;
+	while(1){
+	cin>>option_color1;
+		if(option_color0!=option_color1){
+	switch(option_color1){
+		case 1:color="black;";
+	break;
+		case 2:color="white;";
+	break;
+		case 3:color="ivory;";
+	break;
+		case 4:color="blue;";
+	break;
+		case 5:color="red;";
+	break;
+		case 6:color="yellow;";
+	break;
+		case 7:color="orange;";
+	break;
+		case 8:color="green;";
+	break;
+	default:
+		break;
+    }
+    cout<<"You successfully define the color of the text!"<<endl;
+    cout<<endl;
+    break;
+}
+    
+    else{
+    	cout<<"sorry,but if the background-color is the same as the color of the text,it would be difficult for you to recognize.Please change your option;"<<endl;
+	}
+}
+
+//type of the text
+string style;
+int option_style;
+cout<<"Please type the text you want to be displayed;\n1.italic;\n2.bold;\n3.emphasis;\n4.substitle;"<<endl;
+cin>>option_style;
+switch(option_style){
+	case 1:style="i";
+	break;
+	case 2:style="bold";
+	break;
+	case 3:style="em";
+	break;
+	case 4:style="sub";
+	break;
+	default:
+		style="p";
+}
+
+//size of the text
+int size;
+while(1){
+cout<<"Please define the size of the text(use 'px' as the unit,and you only need to type the number,Do NOT add the unit):"<<endl;
+ cin>>size;
+ cout<<endl;
+ if(size>=1){
+ 	
+ 	break;
+ }
+ else{
+ 	cout<<"sorry,we cannot recognize it,please try again;"<<endl;
+ }
+}
+
+//input html 
+html<<"<"+style+" style='color:"+color+"font-size:";
+html<<size;
+html<<"px;'>"+txt+"</"+style+">";
+
+//close html
+html.close();
+}
+
+void end(){
+	ofstream html;
+	html.open("0001.html",ios::app);
+	html<<"</body></html>";
+	html.close();
+}
+
+
+int main(){
+	int option_color;
+cout<<"Welcome to this small html file writing helper!"<<endl;
+	//ofstream html;
+	//html.open("0001.html",ios::out);
+//	html.close();
+	
+	begin();
+	backgroundcolor(&option_color);
+	text(option_color);
+	end();
+	
+	system("pause");
+	return 0;
+}
